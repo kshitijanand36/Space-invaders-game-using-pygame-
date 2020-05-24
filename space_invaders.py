@@ -62,7 +62,7 @@ def run():
     bullet_y = 600
     bullet_y_change = 15
     
-    #Initail rate of movement of the spaceship(ie our player)
+    #Initial rate of movement of the spaceship(ie our player)
     rate_x = 0
     rate_y = 0
     
@@ -99,7 +99,7 @@ def run():
 
                         rate_x =0
     
-        #calling the player function to display playr and background
+        #calling the player function to display player and background
         player(player_x,player_y)
         
         global bullet_state
@@ -109,18 +109,18 @@ def run():
             enemy(enemyImg[i],enemy_x[i],enemy_y[i])
             #checking if any enemy goes out of screen
             if enemy_x[i]>=750 or enemy_x[i]<0:
-                enemy_x_change[i]*=-1
+                enemy_x_change[i]*=-1  #changing the direction of it's movement.
                 enemy_y[i]+=enemy_y_change[i]
             enemy_x[i] +=enemy_x_change[i]
             #checking for collision for any enemy
             if collision(bullet_x,bullet_y,enemy_x[i],enemy_y[i]):
-                enemy_x[i] = random.randint(0,700)
+                enemy_x[i] = random.randint(0,700)  #generating a new enemy
                 enemy_y[i] = random.randint(50,150)
-                bullet_state = 'ready'
-                bullet_x = player_x
+                bullet_state = 'ready'  #changing the bullet state from fired to ready 
+                bullet_x = player_x  #now the bullet again starts from the location of spaceship
                 bullet_y = player_y
-                enemy(enemyImg[i],enemy_x[i],enemy_y[i])
-                global score_val
+                enemy(enemyImg[i],enemy_x[i],enemy_y[i]) #respawning the enemy
+                global score_val  #declaring it as global
                 score_val+=1
         #ready means that bullet is not fired or not in moving state
         if bullet_state is 'ready':
